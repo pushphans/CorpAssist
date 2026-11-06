@@ -1,0 +1,17 @@
+fastapi
+uvicorn
+
+pydantic-settings
+pydantic[EmailStr]
+
+sqlalchemy[asyncio]
+alembic
+asyncpg
+
+python-multipart
+httpx
+
+pwdlib[argon2]
+pyJWT
+
+
