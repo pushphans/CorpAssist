@@ -10,6 +10,7 @@ from alembic import context
 from corpassist.core.db import Base
 from corpassist.core.config import settings
 from corpassist.auth.model import user_model
+from corpassist.auth.model import refresh_token_model
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

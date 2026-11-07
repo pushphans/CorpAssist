@@ -2,7 +2,7 @@ fastapi
 uvicorn
 
 pydantic-settings
-pydantic[EmailStr]
+pydantic[Email]
 
 sqlalchemy[asyncio]
 alembic
@@ -13,5 +13,8 @@ httpx
 
 pwdlib[argon2]
 pyJWT
+
+tenacity
+slowapi
 
 
