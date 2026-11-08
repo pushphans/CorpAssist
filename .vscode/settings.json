@@ -1,5 +1,6 @@
 {
     "editor.fontFamily": "Consolas, 'monospace' ",
     "files.autoSave": "afterDelay",
-    "explorer.compactFolders": false
+    "explorer.compactFolders": false,
+    "python.REPL.enableREPLSmartSend": false
 }

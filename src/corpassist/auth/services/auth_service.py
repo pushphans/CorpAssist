@@ -1,3 +1,7 @@
+from corpassist.core.errors import RefreshTokenExpired
+from corpassist.auth.utils.current_user_utils import InvalidCredentialError
+from corpassist.core.errors import UserAlreadyExistsError
+from corpassist.core.errors import IncompleteCredentialsError
 from corpassist.auth.schema.auth_schemas import RefreshTokenResponseModel
 from corpassist.auth.schema.auth_schemas import RefreshTokenRequestModel
 from corpassist.auth.schema.auth_schemas import LoginResponseModel
@@ -18,17 +22,7 @@ from corpassist.auth.schema.auth_schemas import LoginRequestModel
 from sqlalchemy.ext.asyncio import AsyncSession
 
 
-class IncompleteCredentialsError(Exception):
-    pass
 
-class UserAlreadyExistsError(Exception):
-    pass
-
-class InvalidCredentialError(Exception):
-    pass
-
-class RefreshTokenExpired(Exception):
-    pass
 
 
 
