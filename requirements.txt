@@ -17,4 +17,11 @@ pyJWT
 tenacity
 slowapi
 
+langgraph
+langchain
+langchain-groq
+langchain-text-splitters
+
+qdrant-client
+pgvector
 

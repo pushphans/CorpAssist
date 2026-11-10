@@ -34,3 +34,23 @@ class GetTicketResponseSchema(BaseModel):
     priority : TicketPriority
     created_at : datetime
     updated_at : datetime
+
+
+
+class UpdateTicketRequestSchema(BaseModel):
+    title : str = Field(..., max_length=50, min_length=10)
+    description : str = Field(..., min_length=10, max_length=250)
+    status : TicketStatus
+    priority : TicketPriority
+
+
+
+class UpdateTicketResponseSchema(BaseModel):
+    ticket_id : uuid.UUID
+    user_id : uuid.UUID
+    title : str
+    description : str
+    status : TicketStatus
+    priority : TicketPriority
+    created_at : datetime
+    updated_at : datetime

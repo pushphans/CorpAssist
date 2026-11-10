@@ -1,3 +1,5 @@
+from corpassist.core.errors import InvalidCredentialError
+from corpassist.core.errors import InvalidTokenError
 from corpassist.auth.model.user_model import UserModel
 from sqlalchemy import select
 from corpassist.auth.utils.jwt_utils import decode_token
@@ -8,11 +10,6 @@ from fastapi import Depends
 
 security = HTTPBearer(auto_error=False)
 
-class InvalidTokenError(Exception):
-    pass
-
-class InvalidCredentialError(Exception):
-    pass
 
 
 
