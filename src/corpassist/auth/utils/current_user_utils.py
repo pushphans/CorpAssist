@@ -26,7 +26,7 @@ async def get_user(
     
     token = credentials.credentials
 
-    payload = decode_token(token=token)
+    payload = await decode_token(token=token)
 
     user_id = payload.get("sub")
 

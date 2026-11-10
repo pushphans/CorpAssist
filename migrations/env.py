@@ -12,6 +12,7 @@ from corpassist.core.config import settings
 from corpassist.auth.model.user_model import UserModel
 from corpassist.auth.model.refresh_token_model import RefreshTokenModel
 from corpassist.tickets.model.ticket_model import TicketModel
+from corpassist.leaves.model.leave_model import LeaveModel
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

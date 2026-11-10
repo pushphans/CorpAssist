@@ -27,9 +27,9 @@ async def create_access_token(user_id : uuid.UUID):
 
 async def decode_token(token : str):
     payload = jwt.decode(
-        token=token,
-        algorithms=[settings.ALGORITHM],
-        key=settings.JWT_SECRET_KEY
+        jwt=token,
+        key=settings.JWT_SECRET_KEY,
+        algorithms=[settings.ALGORITHM]
     )
 
     return payload

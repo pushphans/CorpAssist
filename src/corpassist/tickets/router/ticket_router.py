@@ -16,7 +16,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from corpassist.tickets.schema.ticket_schema import CreateTicketRequestSchema
 from fastapi import APIRouter
 
-ticket_router = APIRouter(prefix="ticket", tags=["TICKET"])
+ticket_router = APIRouter(prefix="/ticket", tags=["TICKET"])
 
 
 

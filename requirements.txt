@@ -17,4 +17,6 @@ pyJWT
 tenacity
 slowapi
 
-
+langchain
+langchain-groq
+langgraph

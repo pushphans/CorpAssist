@@ -96,7 +96,7 @@ async def login(
         if user is None:
             raise LookupError
 
-        password_verified = verify_password(password=data.password, hashed_password=user.password_hash)
+        password_verified = await verify_password(password=data.password, hashed_password=user.password_hash)
 
         if not password_verified:
             raise InvalidCredentialError
@@ -119,6 +119,7 @@ async def login(
         if rt_object is None:
             rt_object = RefreshTokenModel(
                 refresh_token = new_refresh_token,
+                user_id = user.id,
                 refresh_token_expiry = new_refresh_token_expiry
             )
 

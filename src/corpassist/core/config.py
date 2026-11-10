@@ -9,6 +9,8 @@ class Settings(BaseSettings):
     JWT_SECRET_KEY : str
     ALGORITHM : str
 
+    GROQ_API_KEY : str
+
 
 
     model_config = SettingsConfigDict(

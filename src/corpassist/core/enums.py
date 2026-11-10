@@ -12,3 +12,15 @@ class TicketStatus(Enum):
     OPEN = "OPEN"
     IN_PROGRESS = "IN_PROGRESS"
     RESOLVED = "RESOLVED"   
+
+
+
+class LeaveType(Enum):
+    CASUAL = "CASUAL"
+    SICK = "SICK"
+    EARNED = "EARNED"
+
+class LeaveStatus(Enum):
+    PENDING = "PENDING"
+    APPROVED = "APPROVED"
+    REJECTED = "REJECTED"
