@@ -10,3 +10,5 @@ class InvalidCredentialError(Exception):
 class RefreshTokenExpired(Exception):
     pass
 
+class InvalidTokenError(Exception):
+    pass

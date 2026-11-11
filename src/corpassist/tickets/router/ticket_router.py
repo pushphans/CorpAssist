@@ -1,3 +1,6 @@
+from corpassist.tickets.service.ticket_service import delete_ticket
+from corpassist.tickets.service.ticket_service import update_ticket
+from corpassist.tickets.schema.ticket_schema import UpdateTicketRequestSchema
 from corpassist.tickets.service.ticket_service import list_tickets
 from corpassist.core.enums import TicketStatus
 from corpassist.core.enums import TicketPriority
@@ -101,6 +104,71 @@ async def execute_list_tickets(
         )
 
         return result
+
+    except Exception as e:
+        raise HTTPException(
+            status_code = status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail = str(e)
+        )
+
+
+
+
+@ticket_router.put("/ticket/{ticket_id}")
+async def execute_update_ticket(
+    ticket_id : uuid.UUID,
+    data : UpdateTicketRequestSchema,
+    db : AsyncSession = Depends(get_db),
+    user : UserModel = Depends(get_user)
+):
+    try:
+        result = await update_ticket(
+            ticket_id=ticket_id,
+            data=data,
+            db=db,
+            user_id=user.id
+        )
+
+
+        return result
+
+    except LookupError:
+        raise HTTPException(
+            status_code = status.HTTP_404_NOT_FOUND,
+            detail = "Not found"
+        )
+
+
+    except Exception as e:
+        raise HTTPException(
+            status_code = status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail = str(e)
+        )
+
+
+
+
+@ticket_router.delete("/ticket/{ticket_id}")
+async def execute_delete_ticket(
+    ticket_id : uuid.UUID,
+    db : AsyncSession = Depends(get_db),
+    user : UserModel = Depends(get_user)
+):
+    try:
+        result = await delete_ticket(
+            ticket_id=ticket_id,
+            db=db,
+            user_id=user.id
+        )
+
+        return result
+
+    except LookupError:
+        raise HTTPException(
+            status_code = status.HTTP_404_NOT_FOUND,
+            detail = "Not found"
+        )
+
 
     except Exception as e:
         raise HTTPException(

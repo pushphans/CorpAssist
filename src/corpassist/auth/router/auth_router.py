@@ -1,5 +1,5 @@
+from corpassist.core.errors import InvalidCredentialError
 from corpassist.core.errors import RefreshTokenExpired
-from corpassist.auth.utils.current_user_utils import InvalidCredentialError
 from corpassist.core.errors import UserAlreadyExistsError
 from corpassist.core.errors import IncompleteCredentialsError
 from corpassist.auth.services.auth_service import refresh_token

@@ -1,3 +1,5 @@
+from corpassist.tickets.schema.ticket_schema import UpdateTicketResponseSchema
+from corpassist.tickets.schema.ticket_schema import UpdateTicketRequestSchema
 from corpassist.core.enums import TicketStatus
 from corpassist.core.enums import TicketPriority
 from corpassist.tickets.schema.ticket_schema import GetTicketResponseSchema
@@ -126,4 +128,84 @@ async def list_tickets(
     return tickets
 
 
-    
+
+
+
+async def update_ticket(
+    ticket_id : uuid.UUID,
+    db : AsyncSession,
+    user_id : uuid.UUID,
+    data : UpdateTicketRequestSchema
+):
+    try:
+        query = (
+            select(TicketModel)
+            .where(TicketModel.user_id == user_id, TicketModel.id == ticket_id)
+        )
+
+
+        result = await db.execute(query)
+
+        ticket = result.scalar_one_or_none()
+
+        if ticket is None:
+            raise LookupError
+
+
+        ticket.title = data.title
+        ticket.description = data.description
+        ticket.status = data.status
+        ticket.priority = data.priority
+
+        await db.commit()
+        await db.refresh(ticket)
+
+        return UpdateTicketResponseSchema(
+            ticket_id=ticket_id,
+            user_id=user_id,
+            title=data.title,
+            description=data.description,
+            status=data.status,
+            priority=data.priority,
+            created_at=ticket.created_at,
+            updated_at=ticket.updated_at
+        )
+
+    except Exception:
+        await db.rollback()
+        raise
+
+
+
+async def delete_ticket(
+    ticket_id : uuid.UUID,
+    user_id : uuid.UUID,
+    db : AsyncSession
+):
+    try:
+        query = (
+        select(TicketModel)
+        .where(TicketModel.user_id == user_id, TicketModel.id == ticket_id)
+        )
+
+
+
+        result = await db.execute(query)
+
+        ticket = result.scalar_one_or_none()
+
+        if ticket is None:
+            raise LookupError
+
+
+        await db.delete(ticket)
+
+        return {
+            "detail" : "Ticket deleted successfully"
+        }
+
+    except Exception:
+        await db.rollback()
+        raise
+
+

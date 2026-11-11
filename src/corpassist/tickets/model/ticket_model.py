@@ -14,7 +14,7 @@ class TicketModel(Base):
     __tablename__ = "tickets"
 
     id : Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key = True, default = uuid.uuid4, nullable = False)
-    user_id : Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), ForeignKey("users.id"), unique = True, index = True, nullable = False)
+    user_id : Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), ForeignKey("users.id"), index = True, nullable = False)
     title : Mapped[str] = mapped_column(Text, nullable = False)
     description : Mapped[str] = mapped_column(Text)
     status : Mapped[TicketStatus] = mapped_column(SQLEnum(TicketStatus), nullable = False, default = TicketStatus.OPEN)
