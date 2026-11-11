@@ -6,3 +6,12 @@ llm = init_chat_model(
     model_provider="groq",
     api_key=settings.GROQ_API_KEY
 )
+
+
+
+
+intent_llm = init_chat_model(
+    model="openai/gpt-oss-20b",
+    model_provider="groq",
+    api_key=settings.GROQ_API_KEY
+)
