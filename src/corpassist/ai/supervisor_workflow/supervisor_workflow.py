@@ -26,16 +26,15 @@ async def supervisor_node(state : SupervisorState) -> Command[Literal["ticket_ag
 
 
     system_message = SystemMessage(content="""
-You supervise ticket and leave workflows.
-s
-Choose ticket_agent for pending ticket-related work.
-Choose leave_agent for pending leave-related work.
-For requests involving both, route to one worker at a time.
-Read worker results before choosing the next action.
-Do not repeat work already completed for the current request.
-Choose FINISH when the request is answered, or a worker has
-asked the user for clarification and you must wait for a reply.
-""")
+        You supervise ticket and leave workflows.
+        Choose ticket_agent for pending ticket-related work.
+        Choose leave_agent for pending leave-related work.
+        For requests involving both, route to one worker at a time.
+        Read worker results before choosing the next action.
+        Do not repeat work already completed for the current request.
+        Choose FINISH when the request is answered, or a worker has
+        asked the user for clarification and you must wait for a reply.
+    """)
 
 
     response : SupervisorOutputSchema = await supervisor_llm.ainvoke([system_message] + messages)
